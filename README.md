@@ -17,7 +17,7 @@ Assignments carried out during NodeJs training with Pirple
 - `/logout`
 
 ## Users
->#### Create user
+#### Create user
 - URL: `/users`
 - Method: `POST`
 - Body: (Required): `firstName`, `lastName`, `email`, `phone`, `password`, `address`
@@ -34,7 +34,7 @@ Assignments carried out during NodeJs training with Pirple
 }
 ```
 
->#### Show user
+#### Show user
 - URL: `/users?phone=5750000000`
 - Method: `GET`
 - Headers: (Required) `token`
@@ -55,7 +55,7 @@ Assignments carried out during NodeJs training with Pirple
 ###### 404 `{'Error': 'User Doesn\'t exist'}`
 ###### 403 `{'Error': 'Authentication token is not provided or is invalid'}`
 
->#### Update user
+#### Update user
 - URL: `/users?phone=5750000000`
 - Method: `PUT`
 - Body: (Required) `firstName`, `lastName`, `email`, `phone`, `password`, `address`
@@ -66,7 +66,7 @@ Assignments carried out during NodeJs training with Pirple
 ###### 400 `{'Error': 'Missing required field' | 'Missing fields to update' | 'The specified user does not exist' }`
 ###### 403 `{'Error': 'Authentication token is not provided or is invalid'}`
 
->#### Delete user
+#### Delete user
 - URL: `/users?phone=5750000000`
 - Method: `DELETE`
 - Headers: (Required) `token`
