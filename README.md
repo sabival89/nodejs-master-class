@@ -40,7 +40,7 @@ Assignments carried out during NodeJs training with Pirple
 - Headers: (Required) `token`
 
 ##### Response Codes: `200` `400` `404` `403` `400`
-###### 200 
+`200`  
 ```
 {
     "firstName": "Valentine",
@@ -51,9 +51,9 @@ Assignments carried out during NodeJs training with Pirple
     "hashedPassword": "1a7b24fd97406a0c4f05cf091cfc205b4d8be03386418fc002b3be59f4f34ft"
 }
 ```
-###### 400 `{'Error': 'Missing required field'}`
-###### 404 `{'Error': 'User Doesn\'t exist'}`
-###### 403 `{'Error': 'Authentication token is not provided or is invalid'}`
+`400` `{'Error': 'Missing required field'}`  
+`404` `{'Error': 'User Doesn\'t exist'}`  
+`403` `{'Error': 'Authentication token is not provided or is invalid'}`  
 
 #### Update user
 - URL: `/users?phone=5750000000`
@@ -61,10 +61,10 @@ Assignments carried out during NodeJs training with Pirple
 - Body: (Required) `firstName`, `lastName`, `email`, `phone`, `password`, `address`
 
 ##### Response Codes: `200` `500` `404` `403` `400`
-###### 200 `{'Message': 'Your profile was successfully updated'}`
-###### 500 `{'Error': 'Could not update the user'}`
-###### 400 `{'Error': 'Missing required field' | 'Missing fields to update' | 'The specified user does not exist' }`
-###### 403 `{'Error': 'Authentication token is not provided or is invalid'}`
+`200` `{'Message': 'Your profile was successfully updated'}`  
+`500` `{'Error': 'Could not update the user'}`  
+`400` `{'Error': 'Missing required field' | 'Missing fields to update' | 'The specified user does not exist' }`  
+`403` `{'Error': 'Authentication token is not provided or is invalid'}`  
 
 #### Delete user
 - URL: `/users?phone=5750000000`
@@ -72,11 +72,11 @@ Assignments carried out during NodeJs training with Pirple
 - Headers: (Required) `token`
 
 ##### Response Codes: `200` `500` `404` `403` `400`
-###### 200 `{'Message': 'User has been successfully deleted'}`
-###### 500 `{'Error': 'Could not delete the specified user'}`
-###### 400 `{'Error': 'Missing required field'}`
-###### 404 `{'Error': 'Could not find the specified user'}`
-###### 403 `{'Error': 'Authentication token is not provided or is invalid'}`
+`200` `{'Message': 'User has been successfully deleted'}`  
+`500` `{'Error': 'Could not delete the specified user'}`  
+`400` `{'Error': 'Missing required field'}`  
+`404` `{'Error': 'Could not find the specified user'}`  
+`403` `{'Error': 'Authentication token is not provided or is invalid'}`  
 
 
 
