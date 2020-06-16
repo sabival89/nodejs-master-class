@@ -105,6 +105,7 @@ helpers.sumValues = (total, num ) => {
     return total + parseFloat(price);
 };
 
+// Get current date and time
 helpers.getTimestamp = () => {
     let now = new Date();
     now.setMinutes(now.getMinutes() - now.getTimezoneOffset());

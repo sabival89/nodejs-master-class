@@ -55,12 +55,12 @@ handlers._users.post = (data, callback) => {
                     if (!err) {
                         callback(200, {"Message":"User was successfully created"});
                     } else {
-                        callback(500, {'Error': 'Could not create the new user'});
+                        callback(500, {'Error': 'Could not create user'});
                     }
                 });
             } else {
                 // User already exists
-                callback(400, {'Error': 'A user with that email address already exists'});
+                callback(400, {'Error': 'A user with that phone number already exists'});
             }
         });
 
@@ -204,7 +204,7 @@ handlers._users.delete = (data, callback) => {
                             }
                         });
                     } else {
-                        callback(400, {'Error': 'Could not find the specified user'});
+                        callback(404, {'Error': 'Could not find the specified user'});
                     }
                 });
             } else {

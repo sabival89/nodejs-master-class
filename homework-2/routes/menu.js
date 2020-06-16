@@ -24,41 +24,41 @@ handlers.menu = (data, callback) => {
 handlers._menu = {};
 
 // Menu - POST
-// handlers._menu.post = (data, callback) => {
-//     let itemName = typeof(data.payload.itemName) == 'string' && data.payload.itemName.trim().length > 0 ? data.payload.itemName.trim() : false;
-//     let itemPrice = typeof(data.payload.itemPrice) == 'string' && data.payload.itemPrice.trim().length > 0 && data.payload.itemPrice.trim().search(/^[0-9]+[.][0-9][0-9]$/g) > -1 ? data.payload.itemPrice.trim() : false;    
+handlers._menu.post = (data, callback) => {
+    let itemName = typeof(data.payload.itemName) == 'string' && data.payload.itemName.trim().length > 0 ? data.payload.itemName.trim() : false;
+    let itemPrice = typeof(data.payload.itemPrice) == 'string' && data.payload.itemPrice.trim().length > 0 && data.payload.itemPrice.trim().search(/^[0-9]+[.][0-9][0-9]$/g) > -1 ? data.payload.itemPrice.trim() : false;    
     
-//     if (itemName && itemPrice) {
-//         // Get menu items
-//         _data.read('pizzas', 'pizza', (err, data) => {
-//             if (!err && data) {
+    if (itemName && itemPrice) {
+        // Get menu items
+        _data.read('pizzas', 'pizza', (err, data) => {
+            if (!err && data) {
 
-//                 let menuObject = {
-//                     itemId: data.items.length + 1,
-//                     itemName: itemName,
-//                     itemPrice: itemPrice
-//                 };
+                let menuObject = {
+                    itemId: data.items.length + 1,
+                    itemName: itemName,
+                    itemPrice: itemPrice
+                };
 
-//                 // Append new item to existing items
-//                 data.items.push(menuObject);
+                // Append new item to existing items
+                data.items.push(menuObject);
                 
-//                 // Store the new item
-//                 _data.update('pizzas', 'pizza', data, (err) => {
-//                     if (!err) {
-//                         callback(200);
-//                     } else {
-//                         callback(500, {'Error': 'Could not update the menu'});
-//                     }
-//                 });
-//             } else {
-//                 callback(400, {'Error': 'Could not find the specified token'});
-//             }
-//         });
+                // Store the new item
+                _data.update('pizzas', 'pizza', data, (err) => {
+                    if (!err) {
+                        callback(200, {'Message': 'Menu item was successfully created'});
+                    } else {
+                        callback(500, {'Error': 'Could not update the menu'});
+                    }
+                });
+            } else {
+                callback(400, {'Error': 'Could not open menu for reading'});
+            }
+        });
         
-//     } else {
-//         callback(400, {'Error': 'Missing required field(s)'});
-//     }
-// };
+    } else {
+        callback(400, {'Error': 'Missing required field(s)'});
+    }
+};
 
 // Menu - GET
 handlers._menu.get =  (data, callback) => {
@@ -76,19 +76,19 @@ handlers._menu.get =  (data, callback) => {
                             if (!err && data) {
                                 callback(200, data.items);
                             } else {
-                                callback(400, {'Error': 'Could not find the specified token'});
+                                callback(400, {'Error': 'Could not read menu items'});
                             }
                         });
                     } else {
-                        callback(403, {'Error': 'Authentication token is invalid'});
+                        callback(403, {'Error': 'Authentication token is invalid for user'});
                     }
                 });
             } else {
-                callback(400, {'Error': 'No valid token provided. Please login to access this page'});
+                callback(400, {'Error': 'Invalid token provided. Please login to access this page'});
             }
         });
     } else {
-        callback(400, {'Error': 'Token not provided'});
+        callback(400, {'Error': 'Missing required fields. Token not provided'});
     }
 };
 

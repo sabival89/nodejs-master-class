@@ -44,7 +44,7 @@ handlers._logout.post = (data, callback) => {
                             }
                         });
                     } else {
-                        callback(403, {'Error': 'Authentication token is invalid'});
+                        callback(401, {'Error': 'Authentication token is invalid'});
                     }
                 });
             } else {
@@ -93,14 +93,14 @@ handlers._tokens.post = (data, callback) => {
                         if (!err) {
                             callback(200, tokenObject);
                         } else {
-                            callback(500, {'Error': 'Could not create the new token'});
+                            callback(500, {'Error': 'Could not create token for user'});
                         }  
                     });
                 } else {
-                    callback(400, {'Error': 'Invalid password'});
+                    callback(401, {'Error': 'Invalid password'});
                 } 
            } else {
-                callback(400, {'Error': 'Could not find the specified user'});
+                callback(400, {'Error': 'User not found'});
            }  
         });
     } else {
