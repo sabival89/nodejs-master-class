@@ -4,7 +4,7 @@ The second assignment carried out during NodeJs training with Pirple
 ## Author
 [Valentine Aduaka](https://github.com/sabival89)
 
-# REST API Documentation for a pizza-delivery company
+## REST API Documentation for a pizza-delivery company
 
 ## Routes
 - `/users`
@@ -14,6 +14,7 @@ The second assignment carried out during NodeJs training with Pirple
 - `/checkout`
 - `/login`
 - `/logout`
+
 
 ## Users
 #### Create user
@@ -129,7 +130,7 @@ The second assignment carried out during NodeJs training with Pirple
 
 
 ## Carts
-When adding items to cart, if the item you are adding to cart already exists, the irem is rejected. The specified item can be updated using the PUT HTTP method/verb  
+When adding items to cart, if the item you are adding to cart already exists, the item is rejected. The specified item can be updated using the PUT HTTP method/verb  
 
 #### Create - Add items to cart
 - URL: `/carts`
@@ -186,13 +187,144 @@ When adding items to cart, if the item you are adding to cart already exists, th
 `403` `{'Error': 'Authentication token is not provided or is invalid'}`   
 
 
+## Orders
+#### Create an order
+- URL: `/orders`
+- Method: `POST`
+- Headers: (Required) `token`
+ 
+###### Response Codes: `200` `400` `403` `500`
+`200` `{"id": "t77kr3jctc7km41f3to0"}`    
+`400` `{'Error': 'Invalid token provided. Please login to access this page' | 'Missing required fields. Token not provided'}`  
+`500` `{'Error': 'Could not add order to DB' | 'Could not create order' | 'You have no items in your cart.'}`  
+`403` `{'Error': 'Authentication token is not provided or is invalid'}`
+
+#### Show all orders
+- URL: `/orders`
+- Method: `GET`
+- Headers: (Required) `token`
+
+###### Response Codes: `200` `400` `403`
+`200`  
+```
+{
+	"orders": [{
+		"kfowfxqdhcq6ac01m4tv": {
+			"orderId": "kfowfxqdhcq6ac01m4tv",
+			"customerId": "575XXXXXXX",
+			"customerName": "Valentine Aduaka",
+			"customerEmail": "a*****@live.com",
+			"hasPaid": true,
+			"emailSent": true,
+			"items": [{
+					"itemId": 1,
+					"itemName": "Pepperoni with Garlic Parmesan Crust",
+					"itemPrice": "19.99",
+					"quantity": 1
+				},
+				{
+					"itemId": 2,
+					"itemName": "Cheese Pizza",
+					"itemPrice": "9.99",
+					"quantity": 2
+				},
+				{
+					"itemId": 4,
+					"itemName": "Sausage with Garlic Parmesan Crust",
+					"itemPrice": "4.99",
+					"quantity": 4
+				}
+			],
+			"totalPrice": 59.93,
+			"createdAt": "2020-06-15 08:43:36",
+			"updatedAt": "2020-06-15 08:51:57",
+			"stripe": {
+				"stripeStatus": "succeeded",
+				"connectionInfo": {
+					"network_status": "approved_by_network",
+					"reason": null,
+					"risk_level": "normal",
+					"risk_score": 46,
+					"seller_message": "Payment complete.",
+					"type": "authorized"
+				}
+			}
+		}
+	},
+	{ ... }
+	]
+}
+```
+`400` `{'Error': 'You have no existing orders' | 'Invalid token provided. Please login to access this page' | 'Missing required field(s)'}`    
+`403` `{'Error': 'Authentication token is not provided or is invalid'}`  
+
+#### Show order by ID
+- URL: `/orders?id=<orderId>`
+- Method: `GET`
+- Headers: (Required) `token`
+
+###### Response Codes: `200` `400` `403`
+`200` `{"id": "t77kr3jctc7km41f3to0"}`    
+`400` `{'Error': 'The order id does not exist' | 'Order table for user not found' | 'Invalid token provided. Please login to access this page' | 'Missing required fields. Token not provided'}`  
+`403` `{'Error': 'Authentication token is not provided or is invalid'}`
+
+
+## Checkout
+#### Create - Add items to cart
+- URL: `/checkout`
+- Method: `POST`
+- Body: (Required): `orderId`
+- Headers: (Required) `token`
+  
+###### Response Codes: `200` `400` `403` `401` `500`
+`200` `{"message": 'Your order was successful'}`    
+`400` `{'Error': 'Missing required field(s)' | 'Invalid token provided. Please login to access this page' | "This order has already been fulfilled. Please contact support."}`  
+`500` `{'Error': 'Order Id not found' | 'Failed to update order database' | 'Failed to delete cart data'}`  
+`403` `{'Error': 'Authentication token is not provided or is invalid'}`
+`401` `{'Error': 'Could not process payment,' | 'Could not send email'}`
+
+
+## Login
+#### User log in
+- URL: `/login`
+- Method: `POST`
+- Body: (Required): `phone` `password`
+ 
+###### Response Codes: `200` `400` `401` `500`
+`200` 
+```
+{
+    "phone": "57XXXXXXXX",
+    "id": "of0u4krass8yhcc3wcrl",
+    "expires": 1592283857676
+}
+```
+`400` `{'Error': 'User not found' | 'Missing required fields'}`  
+`401` `{'Error': 'Invalid password'}`  
+`500` `{'Error': 'Could not create token for user'}`  
+
+
+## Logout
+#### User logout
+- URL: `/logout`
+- Method: `POST`
+- Header: (Required): `token`
+ 
+###### Response Codes: `200` `400` `401` `500`
+`200` `{'Message': 'You successfulty logged out'}`
+`400` `{'Error': 'Token does not exist' | 'Token not provided'}`  
+`403` `{'Error': 'Authentication token is invalid'}`  
+`500` `{'Error': 'An error occurred while trying to log you out'}`  
+
+
 ## Installation Guide
 1. Clone the project repository 
-2. Move to root dir
+2. Move to root dir  
+
 ```
 cd homework-2
 ```  
 3. Start the server
 ```  
-node MAILGUN_KEY=<your-mailgun-key> STRIPE_KEY=<your-stripe-key> index.js 
+MAILGUN_KEY=<your-mailgun-key> STRIPE_KEY=<your-stripe-key> node index.js 
 ```
