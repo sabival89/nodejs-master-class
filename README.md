@@ -32,7 +32,7 @@ The second assignment carried out during NodeJs training with Pirple
     "address": "2325 Pizza Ave"
 }
 ```   
-##### Response Codes: `200` `400` `500`
+###### Response Codes: `200` `400` `500`
 `200` `{"Message":"User was successfully created"}`    
 `400` `{'Error': 'A user with that phone number already exists' | 'Missing required fields'}`  
 `500` `{'Error': 'Could not create user'}`   
@@ -42,7 +42,7 @@ The second assignment carried out during NodeJs training with Pirple
 - Method: `GET`
 - Headers: (Required) `token`
 
-##### Response Codes: `200` `400` `404` `403`
+###### Response Codes: `200` `400` `404` `403`
 `200`  
 ```
 {
@@ -75,7 +75,7 @@ The second assignment carried out during NodeJs training with Pirple
 - Method: `DELETE`
 - Headers: (Required) `token`   
 
-##### Response Codes: `200` `500` `404` `403` `400`
+###### Response Codes: `200` `500` `404` `403` `400`
 `200` `{'Message': 'User has been successfully deleted'}`  
 `500` `{'Error': 'Could not delete the specified user'}`  
 `400` `{'Error': 'Missing required field'}`  
@@ -97,7 +97,7 @@ The second assignment carried out during NodeJs training with Pirple
     "itemPrice": "5.99"
 }
 ```   
-##### Response Codes: `200` `400` `500`
+###### Response Codes: `200` `400` `500`
 `200` `{'Message': 'Menu item was successfully created'}`    
 `400` `{'Error': 'Could not open menu for reading' | 'Missing required field(s)'}`  
 `500` `{'Error': 'Could not update the menu'}`  
@@ -107,7 +107,7 @@ The second assignment carried out during NodeJs training with Pirple
 - Method: `GET`
 - Headers: (Required) `token`
 
-##### Response Codes: `200` `400` `403`  
+###### Response Codes: `200` `400` `403`  
 `200`  
 ```
 [
@@ -144,7 +144,7 @@ When adding items to cart, if the item you are adding to cart already exists, th
 	"quantity": 1
 }
 ```   
-##### Response Codes: `200` `400` `403` `409` `500`
+###### Response Codes: `200` `400` `403` `409` `500`
 `200` `{"message": "Item was successfully added to cart"}`    
 `400` `{'Error': 'Missing required field(s)' | 'Invalid token provided. Please login to access this page' | 'Could not open menu for reading' | 'The item you specified doesn\'t exist in the menu'}`  
 `500` `{'Error': 'Could not add item to the cart' | Could not read data from the cart}`  
@@ -156,7 +156,7 @@ When adding items to cart, if the item you are adding to cart already exists, th
 - Method: `GET`
 - Headers: (Required) `token`
 
-##### Response Codes: `200` `400` `404` `403`
+###### Response Codes: `200` `400` `404` `403`
 `200`  
 ```
 [
