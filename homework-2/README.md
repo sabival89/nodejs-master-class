@@ -1,5 +1,5 @@
 # Nodejs Master Class - Homework-2
-The second assignment carried out during NodeJs training with Pirple
+TOrder placing and Payment API for Pizza Delivery Company
 
 ## Author
 [Valentine Aduaka](https://github.com/sabival89)
