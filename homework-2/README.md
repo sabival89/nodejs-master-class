@@ -1,5 +1,5 @@
 # Nodejs Master Class - Homework-2
-TOrder placing and Payment API for Pizza Delivery Company
+Order placing and Payment API for a Pizza Delivery Company
 
 ## Author
 [Valentine Aduaka](https://github.com/sabival89)
